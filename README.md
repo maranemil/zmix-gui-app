@@ -20,3 +20,6 @@ sudo apt-get install ffmpeg -y
 python3 main.py
 # pygame 2.1.2 (SDL 2.26.3, Python 3.11.2)
 ~~~
+
+
+[![Screen](screens/zmix.png)](#features)
