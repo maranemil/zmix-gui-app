@@ -4,12 +4,12 @@
 # Define required macros here
 SHELL = /bin/sh
 
-composer-up:
+create-folders:
 	@echo "Create folders"
 	mkdir -p chop output load rubberband split
 
-create-python-env:
-	python -m venv zmix-app-env
+#create-python-env:
+#	python -m venv zmix-app-env
 
 installation:
 	sudo apt-get install python3-tk python3-pygame rubberband-cli ffmpeg -y

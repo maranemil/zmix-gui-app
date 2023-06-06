@@ -16,6 +16,12 @@ sudo apt-get install ffmpeg -y
 
 #### How to start Zmix App
 
+Create folders for app:
+~~~sh
+mkdir -p chop output load rubberband split
+~~~
+
+Start App
 ~~~sh
 python3 main.py
 # pygame 2.1.2 (SDL 2.26.3, Python 3.11.2)
