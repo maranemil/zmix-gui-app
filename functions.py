@@ -28,6 +28,12 @@ def get_rubberband_files() -> list:
     return filenames
 
 
+def get_output_files() -> list:
+    mypath = 'output'
+    filenames = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+    return filenames
+
+
 def divide_chunks(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]
@@ -35,8 +41,35 @@ def divide_chunks(l, n):
 
 def clear_frame(frame3):
     for widgets in frame3.winfo_children():
-        # widgets.destroy()
+        widgets.destroy()
         pass
+
+
+def generate_output_previw(frame3):
+    print('generate_output_previw.....')
+    clear_frame(frame3)
+
+    files = get_output_files()
+    if len(files) == 0:
+        show_error_dialog("Please generate files first")
+    else:
+        n = 6
+        files_chunks = list(divide_chunks(files, n))
+        grid_rows = len(files_chunks)
+
+        for row in range(grid_rows):
+            for col in range(len(files_chunks[row])):
+                frame = tk.Frame(
+                    master=frame3,
+                    relief=tk.RAISED,
+                    borderwidth=1
+                )
+                frame.grid(row=row, column=col, padx=5, pady=5)
+                file_output = str(f"{files_chunks[row][col]}")
+                button = tk.Button(master=frame, text=file_output,
+                                   activebackground='magenta',
+                                   command=lambda file_output3=file_output: play_audio_output(file_output3))
+                button.grid(row=row, column=col, sticky="nsew")
 
 
 def generate_rubberband_previw(frame3):
@@ -44,23 +77,27 @@ def generate_rubberband_previw(frame3):
     clear_frame(frame3)
 
     files = get_rubberband_files()
-    n = 8
-    files_chunks = list(divide_chunks(files, n))
-    grid_rows = len(files_chunks)
+    if len(files) == 0:
+        show_error_dialog("Please generate files first")
+    else:
+        n = 8
+        files_chunks = list(divide_chunks(files, n))
+        grid_rows = len(files_chunks)
 
-    for row in range(grid_rows):
-        for col in range(len(files_chunks[row])):
-            frame = tk.Frame(
-                master=frame3,
-                relief=tk.RAISED,
-                borderwidth=1
-            )
-            frame.grid(row=row, column=col, padx=5, pady=5)
-            file_rubberband = str(f"{files_chunks[row][col]}")
-            button = tk.Button(master=frame, text=file_rubberband,
-                               activebackground='green',
-                               command=lambda file_rubberband3=file_rubberband: play_audio_rubberband(file_rubberband3))
-            button.grid(row=row, column=col, sticky="nsew")
+        for row in range(grid_rows):
+            for col in range(len(files_chunks[row])):
+                frame = tk.Frame(
+                    master=frame3,
+                    relief=tk.RAISED,
+                    borderwidth=1
+                )
+                frame.grid(row=row, column=col, padx=5, pady=5)
+                file_rubberband = str(f"{files_chunks[row][col]}")
+                button = tk.Button(master=frame, text=file_rubberband,
+                                   activebackground='darkorange',
+                                   command=lambda file_rubberband3=file_rubberband: play_audio_rubberband(
+                                       file_rubberband3))
+                button.grid(row=row, column=col, sticky="nsew")
 
 
 def generate_split_previw(frame3):
@@ -69,25 +106,28 @@ def generate_split_previw(frame3):
     clear_frame(frame3)
 
     files = get_split_files()
-    n = 8
-    files_chunks = list(divide_chunks(files, n))
-    grid_rows = len(files_chunks)
+    if len(files) == 0:
+        show_error_dialog("Please generate files first")
+    else:
+        n = 8
+        files_chunks = list(divide_chunks(files, n))
+        grid_rows = len(files_chunks)
 
-    for row in range(grid_rows):
-        for col in range(len(files_chunks[row])):
-            frame = tk.Frame(
-                master=frame3,
-                relief=tk.RAISED,
-                borderwidth=1
-            )
-            frame.grid(row=row, column=col, padx=5, pady=5)
-            # label = tk.Label(master=frame, text=f"Row {i}\nColumn {j}")
-            # label = tk.Label(master=frame, text=f" {files_chunks[i][j]} ")
-            # label.pack(padx=5, pady=5)
-            file_split = str(f"{files_chunks[row][col]}")
-            button = tk.Button(master=frame, text=file_split, activebackground='green',
-                               command=lambda file_split3=file_split: play_audio_split(file_split3))
-            button.grid(row=row, column=col, sticky="nsew")
+        for row in range(grid_rows):
+            for col in range(len(files_chunks[row])):
+                frame = tk.Frame(
+                    master=frame3,
+                    relief=tk.RAISED,
+                    borderwidth=1
+                )
+                frame.grid(row=row, column=col, padx=5, pady=5)
+                # label = tk.Label(master=frame, text=f"Row {i}\nColumn {j}")
+                # label = tk.Label(master=frame, text=f" {files_chunks[i][j]} ")
+                # label.pack(padx=5, pady=5)
+                file_split = str(f"{files_chunks[row][col]}")
+                button = tk.Button(master=frame, text=file_split, activebackground='darkorange',
+                                   command=lambda file_split3=file_split: play_audio_split(file_split3))
+                button.grid(row=row, column=col, sticky="nsew")
 
 
 #######################################
@@ -166,6 +206,12 @@ def play_audio_rubberband(file):
     pygame.mixer.music.play()
 
 
+def play_audio_output(file):
+    print(file)
+    pygame.mixer.music.load("./output/" + file)
+    pygame.mixer.music.play()
+
+
 def play_audio_split(file):
     print(file)
     pygame.mixer.music.load("./split/" + file)
@@ -228,8 +274,6 @@ def execute_command_shuffle():
 
 def button_click():
     label.config(text="Button Clicked!")
-
-
 
 # def load_file():
 #     file_path = filedialog.askopenfilename()

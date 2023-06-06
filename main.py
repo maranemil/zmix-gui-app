@@ -88,16 +88,16 @@ button = tk.Button(master=frame1, text="Run Split",
                    justify=tk.LEFT,
                    width=20,
                    height=2,
-                   bg="black",
-                   fg="yellow", )
+                   bg="honeydew",
+                   fg="black", )
 button.pack(anchor="w")  # side="left",
 
 button = tk.Button(master=frame1, text="Run RubberBand",
                    command=execute_command_rubberband,
                    width=20,
                    height=2,
-                   bg="black",
-                   fg="yellow",
+                   bg="honeydew",
+                   fg="black",
                    )
 button.pack(anchor="w")
 
@@ -105,8 +105,8 @@ button = tk.Button(master=frame1, text="Run Shuffle",
                    command=execute_command_shuffle,
                    width=20,
                    height=2,
-                   bg="black",
-                   fg="yellow", )
+                   bg="honeydew",
+                   fg="black", )
 button.pack(anchor="w")
 
 button = tk.Button(master=frame1, text="Clean Temp Files",
@@ -124,7 +124,7 @@ button = tk.Button(master=frame1, text="Preview Split files",
                    command=lambda frame3a=frame3: generate_split_previw(frame3a),
                    width=20,
                    height=2,
-                   bg="black",
+                   bg="darkorange",
                    fg="yellow", )
 button.pack(anchor="w")
 
@@ -132,7 +132,15 @@ button = tk.Button(master=frame1, text="Preview Rubberband files",
                    command=lambda frame3a=frame3: generate_rubberband_previw(frame3a),
                    width=20,
                    height=2,
-                   bg="black",
+                   bg="darkorange",
+                   fg="yellow", )
+button.pack(anchor="w")
+
+button = tk.Button(master=frame1, text="Preview Output files",
+                   command=lambda frame3a=frame3: generate_output_previw(frame3a),
+                   width=20,
+                   height=2,
+                   bg="magenta",
                    fg="yellow", )
 button.pack(anchor="w")
 

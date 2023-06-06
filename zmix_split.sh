@@ -79,14 +79,14 @@ if [ "$DEL" ]; then
   files=(/split/*)
   if [ ${#files[@]} -gt 0 ]; then
     for f in split/*.wav; do
-      rm $f
+      rm -f "$f"
       #echo "Removed file: $f"
     done
   fi
   files=(/output/*)
   if [ ${#files[@]} -gt 0 ]; then
     for f in output/*.wav; do
-      rm $f
+      rm -f "$f"
       #echo "Removed file: $f"
     done
   fi
