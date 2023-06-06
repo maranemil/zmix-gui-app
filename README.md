@@ -40,5 +40,7 @@ python3 main.py
 - Click "Run Rubberband" and wait until job is done.
 - Click "Preview Rubberband files" and start playing and listen the result.
 
+#
+#### App Screen GUI
 
 [![Screen](screens/zmix.png)](#features)
