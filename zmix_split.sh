@@ -26,7 +26,7 @@ done
 if [ "$HELP" ]; then
   echo "--------------------------------------------------"
   echo "HELP: "
-  echo "usage: bash zmix.sh -i load/in.mp3 -dy -t * -s 0.6"
+  echo "usage: bash zmix_split.sh -i load/in.mp3 -dy -t * -s 0.6"
   echo ""
   echo "options:"
   echo "-h yes        - help"
