@@ -19,11 +19,11 @@ done
 if [ "$HELP" == "yes" ]; then
   echo "--------------------------------------------------"
   echo "HELP: "
-  echo "usage: bash zmix_shuffle_v2.sh -i load/input.wav -d yes -t * "
+  echo "usage: bash zmix_shuffle.sh -i load/in.mp3 -d yes -t * "
   echo ""
   echo "options:"
   echo "-h yes        - help"
-  echo "-i file.wav   - specify input file"
+  echo "-i file.mp3   - specify input file"
   echo "-d yes        - delete old generated temp files"
   echo "--------------------------------------------------"
   exit
@@ -54,14 +54,14 @@ if [ "$DEL" ]; then
   files=(/split/*)
   if [ ${#files[@]} -gt 0 ]; then
     for f in split/*.wav; do
-      rm $f
+      rm "$f"
       #echo "Removed file: $f"
     done
   fi
   files=(/output/*)
   if [ ${#files[@]} -gt 0 ]; then
     for f in output/*.wav; do
-      rm $f
+      rm "$f"
       #echo "Removed file: $f"
     done
   fi

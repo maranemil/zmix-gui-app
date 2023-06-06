@@ -32,7 +32,7 @@ if [[ $HELP ]]; then
   echo ""
   echo "options:"
   echo "-h yes        - help"
-  echo "-i file.wav   - specify input file"
+  echo "-i file.mp3   - specify input file"
   echo "-d yes        - delete old generated temp files"
   echo "-t *          - chose setup for split:"
   echo "               * = default "

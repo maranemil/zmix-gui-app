@@ -26,11 +26,11 @@ done
 if [ "$HELP" ]; then
   echo "--------------------------------------------------"
   echo "HELP: "
-  echo "usage: bash zmix.sh -i load/in.wav -dy -t * -s 0.6"
+  echo "usage: bash zmix.sh -i load/in.mp3 -dy -t * -s 0.6"
   echo ""
   echo "options:"
   echo "-h yes        - help"
-  echo "-i file.wav   - specify input file"
+  echo "-i file.mp3   - specify input file"
   echo "-d yes        - delete old generated temp files"
   echo "-t *          - chose setup for split:"
   echo "               * = default "
