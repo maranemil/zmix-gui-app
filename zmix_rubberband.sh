@@ -26,9 +26,9 @@ done
 if [[ $HELP ]]; then
   echo "--------------------------------------------------"
   echo "HELP: "
-  echo "usage: bash zmix_pitch.sh -i load/in.wav -d yes -t 1"
-  echo "usage: bash zmix_pitch.sh -i load/in.wav -dy -t1"
-  echo "usage: bash zmix_pitch.sh -hy"
+  echo "usage: bash zmix_rubberband.sh -i load/in.mp3 -d yes -t 1"
+  echo "usage: bash zmix_rubberband.sh -i load/in.mp3 -dy -t1"
+  echo "usage: bash zmix_rubberband.sh -hy"
   echo ""
   echo "options:"
   echo "-h yes        - help"
@@ -160,9 +160,13 @@ fi
 
 
 echo "existing rubberband  ... "
-exit;
+#exit;
 
-sleep 4s
+sleep 2s
+
+# rename files
+num=0; for i in rubberband/*.wav; do mv "$i" "rubberband/split_$(printf '%03d' $num).wav"; ((num++)); done
+
 
 echo "generating outputmix files ... "
 
@@ -191,7 +195,7 @@ for i in 1 2 3 4 5 6 7; do
   -i rubberband/split_00$RANDOM5.wav
   -i rubberband/split_00$RANDOM6.wav
   -filter_complex [0:0][1:0][2:0][3:0][4:0][5:0]concat=n=6:v=0:a=1[out]
-  -map '[out]' output/zmix_$(date +%s).wav 2>/dev/null " # -report
+  -map '[out]' output/zmix_$(date +%s).wav  " # -report 2>/dev/null
   # shellcheck disable=SC2086
   eval $cmd
   sleep 5s
