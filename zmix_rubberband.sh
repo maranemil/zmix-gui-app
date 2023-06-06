@@ -146,6 +146,9 @@ sleep 4s
 
 
 echo "generating rubberband files ... "
+# -c clarity
+# -p pitch
+# -t tempo
 
 if [ ${#files[@]} -gt 0 ]; then
   for f in split/*.wav; do
@@ -153,7 +156,7 @@ if [ ${#files[@]} -gt 0 ]; then
     #cmdrb="rubberband -c $(shuf -i0-5 -n1)  -t $(shuf -i0-3 -n1)  -T $(shuf -i0-1 -n1)   -p $(shuf -i0-8 -n1) $f rubberband/$(basename $f) 2>/dev/null"
     #cmdrb="rubberband -c $(shuf -i0-3 -n1)  -t $(shuf -i0-5 -n1)  -T $(shuf -i0-2 -n1)   -p $(shuf -i0-14 -n1) $f rubberband/$(basename $f) 2>/dev/null"
     # shellcheck disable=SC2016
-    cmdrb='rubberband -c $(shuf -i0-3 -n1)  -t $(shuf -i0-2 -n1)  -T $(shuf -i0-2 -n1) -p $(shuf -i0-8 -n1) $f rubberband/$(basename $f) '
+    cmdrb='rubberband -c $(shuf -i0-3 -n1)  -t $(shuf -i0-2 -n1)  -T $(shuf -i0-2 -n1) -p $(shuf -i0-6 -n1) $f rubberband/$(basename $f) '
     eval "$cmdrb"
   done
 fi

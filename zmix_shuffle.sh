@@ -31,9 +31,9 @@ fi
 
 echo "------------------start---------------------------"
 
-echo "Loaded File: " $FILE
+echo "Loaded File: " "$FILE"
 
-if [ ! -f $FILE ]; then
+if [ ! -f "$FILE" ]; then
   echo "File does not exist! Bye!"
   exit
 fi
@@ -46,6 +46,9 @@ fi
 
 echo "Delete existing files? " $DEL
 
+TEND=120
+SIZE=1.5
+
 #--------------------------------------------
 # REMOVE OLD SPLIT FILES
 #--------------------------------------------
@@ -54,14 +57,14 @@ if [ "$DEL" ]; then
   files=(/split/*)
   if [ ${#files[@]} -gt 0 ]; then
     for f in split/*.wav; do
-      rm "$f"
+      rm -f "$f"
       #echo "Removed file: $f"
     done
   fi
   files=(/output/*)
   if [ ${#files[@]} -gt 0 ]; then
     for f in output/*.wav; do
-      rm "$f"
+      rm -f "$f"
       #echo "Removed file: $f"
     done
   fi
@@ -75,8 +78,7 @@ sleep 2s
 #--------------------------------------------
 
 echo "Spliting file in segments ... " 
-
-ffmpeg -i "$FILE" -map 0 -f segment -segment_time 0.3 -c copy -y split/split_%03d.wav -t 9 2>/dev/null
+ffmpeg -i "$FILE" -map 0 -f segment -segment_time "$SIZE" -acodec pcm_s16le -y split/split_%03d.wav -t $TEND 2>/dev/null
 
 #--------------------------------------------
 # SHUFFLE

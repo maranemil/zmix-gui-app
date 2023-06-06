@@ -101,13 +101,13 @@ button = tk.Button(master=frame1, text="Run RubberBand",
                    )
 button.pack(anchor="w")
 
-button = tk.Button(master=frame1, text="Run Shuffle",
-                   command=execute_command_shuffle,
-                   width=20,
-                   height=2,
-                   bg="honeydew",
-                   fg="black", )
-button.pack(anchor="w")
+# button = tk.Button(master=frame1, text="Run Shuffle",
+#                    command=execute_command_shuffle,
+#                    width=20,
+#                    height=2,
+#                    bg="honeydew",
+#                    fg="black", )
+# button.pack(anchor="w")
 
 button = tk.Button(master=frame1, text="Clean Temp Files",
                    command=clean_tmp_files(output_label),
