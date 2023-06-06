@@ -69,7 +69,7 @@ echo "------------------start---------------------------"
 
 
 TEND=120
-SIZE=1.5
+SIZE=1.2
 echo "size specified is: " $SIZE
 
 echo "Loaded File: " "$FILE"
@@ -138,7 +138,7 @@ case $TYPE in
   ;;
 *)
   echo "SETUP default"
-  ffmpeg -i "$FILE" -map 0 -f segment -segment_time "$SIZE" -c copy -y split/split_%03d.wav -t $TEND 2>/dev/null
+  ffmpeg -i "$FILE" -map 0 -f segment -segment_time "$SIZE" -acodec pcm_s16le -y split/split_%03d.wav -t $TEND 2>/dev/null
   ;;
 esac
 
