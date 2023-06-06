@@ -19,6 +19,13 @@ sudo apt-get install ffmpeg -y
 Create folders for app:
 ~~~sh
 mkdir -p chop output load rubberband split
+
+# Folders explanation:
+
+# load - where the input file is saved
+# split - where input files is segmented in ~1 sec wav N files
+# rubberband - where rubberband are generated based on split files
+# output- where random seq output is generate from previus folders
 ~~~
 
 Start App
@@ -29,7 +36,7 @@ python3 main.py
 
 #### How it works
 
-- Import some mp3 file.
+- Import some mp3 file using File "Open".
 - Click "Run Rubberband" and wait until job is done.
 - Click "Preview Rubberband files" and start playing and listen the result.
 
