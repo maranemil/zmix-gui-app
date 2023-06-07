@@ -42,14 +42,6 @@ file_menu.add_command(label="Exit", command=window.quit)
 menu_bar.add_cascade(label="File", menu=file_menu)
 window.config(menu=menu_bar)
 
-# Create a label
-# label = tk.Label(window, text="Hello, ZMIX!")
-# label.pack()
-
-# Create a button
-# button = tk.Button(window, text="Click Me", command=button_click)
-# button.pack()
-
 #######################################
 # Create a label for displaying output
 #######################################
@@ -63,6 +55,9 @@ output_label.pack()
 
 frame1 = tk.Frame(master=window, width=50, bg="white")
 frame1.pack(fill=tk.BOTH, side=tk.LEFT, expand=False)
+
+frame3 = tk.Frame(master=window, width=700, bg="lightgrey")
+frame3.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
 
 play_button = tk.Button(master=frame1, text="Play Input", command=play_audio, width=20,
                         height=2,
@@ -84,7 +79,7 @@ stop_button.pack(anchor="w")  # side="left",
 #######################################
 
 button = tk.Button(master=frame1, text="Run Split",
-                   command=execute_command_split,
+                   command=lambda frame3a=frame3: execute_command_split(frame3a),
                    justify=tk.LEFT,
                    width=20,
                    height=2,
@@ -93,7 +88,7 @@ button = tk.Button(master=frame1, text="Run Split",
 button.pack(anchor="w")  # side="left",
 
 button = tk.Button(master=frame1, text="Run RubberBand",
-                   command=execute_command_rubberband,
+                   command=lambda frame3a=frame3: execute_command_rubberband(frame3a),
                    width=20,
                    height=2,
                    bg="honeydew",
@@ -117,8 +112,7 @@ button = tk.Button(master=frame1, text="Clean Temp Files",
                    fg="yellow", )
 button.pack(anchor="w")
 
-frame3 = tk.Frame(master=window, width=700, bg="grey")
-frame3.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
+
 
 button = tk.Button(master=frame1, text="Preview Split files",
                    command=lambda frame3a=frame3: generate_split_previw(frame3a),
@@ -150,6 +144,15 @@ button.pack(anchor="w")
 
 # load_button = tk.Button(window, text="Load mp3 File", command=load_file)
 # load_button.pack(anchor="w")
+
+# Create a label
+#label =  tk.Label(frame3, text = "Fact of the Day", bg="lightgrey", anchor="nw")
+#label.pack()
+
+# Create a button
+# button = tk.Button(window, text="Click Me", command=button_click)
+# button.pack()
+
 
 # Start the GUI event loop
 window.mainloop()

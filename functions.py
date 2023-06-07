@@ -159,14 +159,14 @@ def show_confirm_dialog(message):
 #######################################
 
 def file_open():
-    file_path = filedialog.askopenfilename(filetypes=[("MP3 Files", "*.mp3")])
+    file_path = filedialog.askopenfilename(filetypes=[("MP3 Files", "*.mp3"), ("WAV Files", "*.wav")])
     if file_path:
         print(file_path)
         save_file(file_path)
 
 
 def load_file():
-    file_path = filedialog.askopenfilename(filetypes=[("MP3 Files", "*.mp3")])
+    file_path = filedialog.askopenfilename(filetypes=(("Audio Files", ".wav .mp3"), ("All Files", "*.*")))
     if file_path:
         # Process the loaded file here
         print(file_path)
@@ -174,13 +174,17 @@ def load_file():
 
 
 def save_file(file_path):
+    file_name, file_extension = os.path.splitext(file_path)
     # save_path = filedialog.asksaveasfilename(defaultextension=".mp3")
-    save_path = './load/in.mp3'
+    save_path = './load/in' + file_extension
     if save_path:
         # Save the file to the specified path
         shutil.copy(file_path, save_path)
-        # print("MP3 file saved to:", save_path)
-        show_info_dialog("MP3 file saved to:" + file_path)
+        show_info_dialog("File saved to:" + file_path)
+
+        if file_extension == ".wav":
+            command = f'ffmpeg -i load/in.wav -y load/in.mp3'
+            subprocess.check_output(command, shell=True).decode()
 
 
 #######################################
@@ -245,7 +249,11 @@ def clean_tmp_files(output_label):
 #######################################
 # bash cmd for split rubberband shuffle
 #######################################
-def execute_command_split():
+def execute_command_split(frame3):
+    # label = tk.Label(frame3, text="creating split files ...", bg="lightgrey", anchor="nw")
+    # label.pack()
+    # time.sleep(2.4)
+
     # clean_tmp_files(output_label)
     # subprocess.call(["bash", "-c", "ls -lha"])
     # command = "ls -la"
@@ -256,24 +264,26 @@ def execute_command_split():
     show_info_dialog("Split files created succesfully")
 
 
-def execute_command_rubberband():
+def execute_command_rubberband(frame3):
+    label = tk.Label(frame3, text="creating rubberband files ...", bg="lightgrey", anchor="nw")
+    label.pack()
+
     # clean_tmp_files()
     command = 'bash zmix_rubberband.sh -i load/in.mp3 -d yes -t 1 || echo "failed"'
     output = subprocess.check_output(command, shell=True).decode()
     # output_label.config(text=output)
     show_info_dialog("Rubberband files created succesfully")
 
+# def execute_command_shuffle():
+#     # clean_tmp_files(output_label)
+#     command = 'bash zmix_shuffle.sh -i load/in.mp3 -d yes -t * || echo "failed"'
+#     output = subprocess.check_output(command, shell=True).decode()
+#     # output_label.config(text=output)
+#     show_info_dialog("Shuffle files created succesfully")
 
-def execute_command_shuffle():
-    # clean_tmp_files(output_label)
-    command = 'bash zmix_shuffle.sh -i load/in.mp3 -d yes -t * || echo "failed"'
-    output = subprocess.check_output(command, shell=True).decode()
-    # output_label.config(text=output)
-    show_info_dialog("Shuffle files created succesfully")
 
-
-def button_click():
-    label.config(text="Button Clicked!")
+# def button_click():
+#     label.config(text="Button Clicked!")
 
 # def load_file():
 #     file_path = filedialog.askopenfilename()
