@@ -265,8 +265,8 @@ def execute_command_split(frame3):
 
 
 def execute_command_rubberband(frame3):
-    label = tk.Label(frame3, text="creating rubberband files ...", bg="lightgrey", anchor="nw")
-    label.pack()
+    #label = tk.Label(frame3, text="creating rubberband files ...", bg="lightgrey", anchor="nw")
+    #label.pack()
 
     # clean_tmp_files()
     command = 'bash zmix_rubberband.sh -i load/in.mp3 -d yes -t 1 || echo "failed"'
