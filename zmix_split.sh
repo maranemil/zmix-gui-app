@@ -127,28 +127,38 @@ esac
 
 sleep 2s
 
+FILESMAX=$(ls split/ | wc -l)
+MAXFILES=$(("$FILESMAX"-1))
+echo "$MAXFILES"
+
 # shellcheck disable=SC2034
-for i in 1 2 3 4 5 6 7; do
+for i in {1..16}; do
   #--------------------------------------------
   #CONCAT 4 WAVS - Rand(10+x)
   #--------------------------------------------
-  # generate random number from 0 to 7
-  RANDOM1=$(shuf -i0-7 -n1)
-  RANDOM2=$(shuf -i0-7 -n1)
-  RANDOM3=$(shuf -i0-7 -n1)
-  RANDOM4=$(shuf -i0-7 -n1)
-  RANDOM5=$(shuf -i0-7 -n1)
-  RANDOM6=$(shuf -i0-7 -n1)
+  # generate random number from 0 to N
+  # shellcheck disable=SC2046
+  RANDOM1=$(printf %03d $(shuf -i0-$MAXFILES -n1))
+  # shellcheck disable=SC2046
+  RANDOM2=$(printf %03d $(shuf -i0-$MAXFILES -n1))
+  # shellcheck disable=SC2046
+  RANDOM3=$(printf %03d $(shuf -i0-$MAXFILES -n1))
+  # shellcheck disable=SC2046
+  RANDOM4=$(printf %03d $(shuf -i0-$MAXFILES -n1))
+  # shellcheck disable=SC2046
+  RANDOM5=$(printf %03d $(shuf -i0-$MAXFILES -n1))
+  # shellcheck disable=SC2046
+  RANDOM6=$(printf %03d $(shuf -i0-$MAXFILES -n1))
   # echo "$(date +%s)"
   # shellcheck disable=SC2086
   echo "Random Sequences: " $RANDOM1, $RANDOM2, $RANDOM3, $RANDOM4, $RANDOM5, $RANDOM6
   cmd="ffmpeg
-  -i split/split_00$RANDOM1.wav
-  -i split/split_00$RANDOM2.wav
-  -i split/split_00$RANDOM3.wav
-  -i split/split_00$RANDOM4.wav
-  -i split/split_00$RANDOM5.wav
-  -i split/split_00$RANDOM6.wav
+  -i split/split_$RANDOM1.wav
+  -i split/split_$RANDOM2.wav
+  -i split/split_$RANDOM3.wav
+  -i split/split_$RANDOM4.wav
+  -i split/split_$RANDOM5.wav
+  -i split/split_$RANDOM6.wav
   -filter_complex [0:0][1:0][2:0][3:0][4:0][5:0]concat=n=6:v=0:a=1[out]
   -map '[out]' output/zmix_$(date +%s).wav 2>/dev/null " # -report
   # shellcheck disable=SC2086
