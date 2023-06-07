@@ -127,6 +127,7 @@ esac
 
 sleep 2s
 
+# shellcheck disable=SC2012
 FILESMAX=$(ls split/ | wc -l)
 MAXFILES=$(("$FILESMAX"-1))
 echo "$MAXFILES"
