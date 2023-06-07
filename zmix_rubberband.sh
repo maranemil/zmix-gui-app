@@ -69,7 +69,7 @@ echo "------------------start---------------------------"
 
 
 TEND=120
-SIZE=1.2
+SIZE=1.5
 echo "size specified is: " $SIZE
 
 echo "Loaded File: " "$FILE"
