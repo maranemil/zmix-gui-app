@@ -32,7 +32,7 @@ mkdir -p chop output load rubberband split
 # load - where the input file is saved
 # split - where input files is segmented in ~1 sec wav N files
 # rubberband - where rubberband are generated based on split files
-# output- where random seq output is generate from previus folders
+# output- where random seq output is generate from previous folders
 ~~~
 
 Start App
