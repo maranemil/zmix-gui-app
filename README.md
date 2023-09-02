@@ -15,6 +15,8 @@ sudo apt-get install ffmpeg -y
 ~~~
 
 ~~~sh
+# To install Python packages system-wide, try apt install python3-xyz, where xyz is the package you are trying to install.
+
 sudo apt install python3-pip -y
 sudo apt install python3-tk -y
 sudo apt install python3-pygame -y
