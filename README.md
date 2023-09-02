@@ -7,12 +7,19 @@ Shuffle sound randomiser using ffmpeg and rubberband-cli in tkinter GUI
 #### Requirements
 
 ~~~sh
-sudo apt-get install python3-venv
+sudo apt-get install python3-venv -y
 sudo apt-get install python3-tk -y
 sudo apt-get install python3-pygame -y
 sudo apt-get install rubberband-cli -y
 sudo apt-get install ffmpeg -y
 ~~~
+
+~~~sh
+sudo apt install python3-pip -y
+sudo apt install python3-tk -y
+sudo apt install python3-pygame -y
+~~~
+
 
 #### How to start Zmix App
 
