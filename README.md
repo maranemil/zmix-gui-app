@@ -1,49 +1,36 @@
 ## zmix-gui-app
+
 Shuffle sound randomizer using ffmpeg and rubberband-cli in tkinter GUI  
+
+### Requirements
+
+- Ubuntu 23.X flavours (Kubuntu, Lubuntu)
 
 
 ### Install
 
-#### Requirements
+Clone Repo and run installer file
 
 ~~~sh
-sudo apt-get install python3-venv -y
-sudo apt-get install python3-tk -y
-sudo apt-get install python3-pygame -y
-sudo apt-get install rubberband-cli -y
-sudo apt-get install ffmpeg -y
+bash installer.sh
 ~~~
 
-~~~sh
-# To install Python packages system-wide, try apt install python3-xyz, where xyz is the package you are trying to install.
+### How to start Zmix App
 
-sudo apt install python3-pip -y
-sudo apt install python3-tk -y
-sudo apt install python3-pygame -y
+~~~sh
+bash start_app.sh
+# pygame 2.1.2 (SDL 2.26.3, Python 3.11.2)
 ~~~
 
-
-#### How to start Zmix App
-
-Create folders for app:
+### Folders explanation
 ~~~sh
-mkdir -p chop output load rubberband split
-
-# Folders explanation:
-
 # load - where the input file is saved
 # split - where input files is segmented in ~1 sec wav N files
 # rubberband - where rubberband are generated based on split files
 # output- where random seq output is generate from previous folders
 ~~~
 
-Start App
-~~~sh
-python3 main.py
-# pygame 2.1.2 (SDL 2.26.3, Python 3.11.2)
-~~~
-
-#### How it works
+### How it works
 
 - Import some mp3 file using File "Open".
 - Click "Run Rubberband" and wait until job is done.
